@@ -1,14 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "description": "protocol version",
+  "description": "Protocol Version Object",
   "properties": {
-    "version": {
-      "type": "string",
-      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?$",
-      "description": "Semantic Versioning (SemVer) string"
+    "major": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "minor": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "patch": {
+      "type": "integer",
+      "minimum": 0
     }
   },
-  "required": ["version"]
+  "required": ["major", "minor", "patch"]
 }
 
