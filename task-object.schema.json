@@ -7,6 +7,7 @@
   "properties": {
     "id": {
       "type": "integer",
+      "maximum": 4294967295,
       "minimum": 0,
       "description": "unique identifier"
     },
@@ -16,6 +17,7 @@
     },
     "duration": {
       "type": "integer",
+      "maximum": 9223372036854775807,
       "minimum": 0,
       "description": "duration in seconds"
     }
