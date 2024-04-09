@@ -2,179 +2,58 @@
 
 Client-Server communication
 
-TDD = Task Tracker Device
+TDD = Task Tracker Device  
 App = Desktop Applikacion
 
 - Server = TTD
 - Client = App
 
+
 ## Limitations
 - Strings MUST NOT have line breaks
-- String parameter MUST have double-quotes
-- Numeric parameters MUST NOT have quotes
+- String parameter containing whitespace MUST have double-quotes
 - Numeric parameters MUST be integers
 - Parameters CAN be sent in arbitrary order
 - Strings MUST use ASCII characters only
-- Protocol version MUST be semver 2.0.0
 
-## see also
-
-https://quicktype.io/
 
 ## "welcome message" from server
 
-prints the response of "get protocol version"
-
+prints the response of "get protocol version": [version info][SCHEMA_VER]
 
 
 ## get protocol version
-### Sending 
 
-    info
-    
-### Receiving
+- Sending: `info`
+- Receiving: [version info][SCHEMA_VER]
 
-`<string>` is s.th. like 1.2.3 
-
-JSON:
-
-    {
-      "protocolVersion": <string>
-    }
 
 ## list tasks
 
-### Sending 
+- Sending: `list`
+- Receiving: [task list][SCHEMA_LIST]
 
-Client sends:
-
-    list
-    
-Server responds:
-
-### Receiving
-
-JSON:
-
-    {
-      "tasks": [
-        {
-        "id": <number>,
-        "name": <string>,
-        "duration": <number>
-        }
-      ]
-    }
-
-JSON Schema:
-
-```
-{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Generated schema for Task Tracker Systems",
-  "type": "object",
-  "properties": {
-    "tasks": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number"
-          },
-          "name": {
-            "type": "string"
-          },
-          "duration": {
-            "type": "number"
-          },
-        },
-        "required": [
-          "id",
-          "name",
-          "duration"
-        ]
-      }
-    }
-  },
-  "required": [
-    "tasks"
-  ]
-}
-``` 
-    
-    
 
 ## edit task
 
+- Sending: `edit --id <id> [--name "<new name>"] [--duration duration]`
+- Receiving: [task description][SCHEMA_TASK]
 
-### Sending 
 
-Client sends:
+## create task
 
-    edit --id <id> [--name "<new name>"] [--duration duration] 
-    
-Server responds:
-
-### Receiving
-
-JSON:
-
-    {
-      "task":
-        {
-        "id": <number>,
-        "name": <string>,
-        "duration": <number>
-        }
-    }
-
-## create task 
-
-### Sending 
-
-Client sends:
-
-    add --id <id> --name "<new name>" [--duration <duration>]
-    
-Server responds:
-
-### Receiving
-
-JSON:
-
-    {
-      "task":
-        {
-        "id": <number>,
-        "name": <string>,
-        "duration": <number>
-        }
-    }
+- Sending: `add --id <id> --name "<new name>" [--duration <duration>]`
+- Receiving: [task description][SCHEMA_TASK]
 
 
 ## delete task
 
-### Sending 
-
-Client sends:
-
-    delete --id <id>
-    
-Server responds:
-
-### Receiving
-
-JSON:
-
-    {
-      "task":
-        {
-        "id": <number>
-        }
-    }
+- Sending: `delete --id <id>`
+- Receiving: [task id][SCHEMA_DEL]
 
 
-
-
+[SCHEMA_DEL]: deleted-task-object.schema.json
+[SCHEMA_VER]: protocol-version-object.schema.json
+[SCHEMA_LIST]: task-list.schema.json
+[SCHEMA_TASK]: task-object.schema.json
 
