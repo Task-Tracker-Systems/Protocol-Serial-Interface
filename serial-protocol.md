@@ -1,4 +1,4 @@
-# Protocol v0.0.1
+# Protocol v0.1.0
 
 Client-Server communication
 
