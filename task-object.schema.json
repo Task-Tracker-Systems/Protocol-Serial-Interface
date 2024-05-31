@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "task_tracker_systems/task-object",
+  "title": "Task Object",
+  "description": "task object",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "maximum": 4294967295,
+      "minimum": 0,
+      "description": "unique identifier"
+    },
+    "label": {
+      "type": "string",
+      "description": "name or summary; ASCII only, no line breaks"
+    },
+    "duration": {
+      "type": "integer",
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "description": "duration in seconds"
+    }
+  },
+  "required": ["id", "label", "duration"]
+}
+
